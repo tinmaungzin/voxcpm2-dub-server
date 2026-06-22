@@ -1,0 +1,7 @@
+# Serverless variant: reuse the fully-baked image, add the RunPod handler.
+FROM ghcr.io/tinmaungzin/voxcpm2-dub-server:latest
+ENV PIP_BREAK_SYSTEM_PACKAGES=1 PIP_ROOT_USER_ACTION=ignore
+RUN pip install --no-cache-dir runpod requests
+COPY handler.py /opt/handler.py
+WORKDIR /opt
+CMD ["python3", "/opt/handler.py"]
